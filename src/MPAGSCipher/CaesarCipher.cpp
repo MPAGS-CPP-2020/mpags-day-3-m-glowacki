@@ -2,19 +2,13 @@
 #include <vector>
 #include <iostream>
 #include "CaesarCipher.hpp"
-#include "CipherMode.hpp"
 
-CaesarCipher::CaesarCipher(const size_t key)
 
-    : key_(0)
-    
-{
-}
- 
 
 CaesarCipher::CaesarCipher( const std::string& key )
 
      : key_{0}
+     
 {
     // We have the key as a string, but the Caesar cipher needs an unsigned long, so we first need to convert it
   // We default to having a key of 0, i.e. no encryption, if no key was provided on the command line
@@ -41,18 +35,14 @@ CaesarCipher::CaesarCipher( const std::string& key )
   }
 }
 
-std::string CaesarCipher::applyCipher(const std::string& inputText, const size_t key, CipherMode cipherMode ){
+std::string CaesarCipher::applyCipher( const std::string& inputText, const CipherMode cipherMode) const {
 
 {
   // Create the output string
   std::string outputText {};
-
-  // Create the alphabet container
-  const std::vector<char> alphabet_ = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-  const size_t alphabetSize_ = alphabet_.size();
-
+  
   // Make sure that the key is in the range 0 - 25
-  const size_t truncatedKey { key % alphabetSize_ };
+  const size_t truncatedKey { key_ % alphabetSize_ };
 
   // Loop over the input text
   char processedChar {'x'};
