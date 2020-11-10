@@ -18,9 +18,13 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -Werror -Wfatal-errors -Wshadow -pedantic")
 
 # - Add the MPAGSCipher subdir to the build 
+#set(EXECUTABLE_OUTPUT_PATH /workspaces/mpags-day-3-m-glowacki)
 add_subdirectory(MPAGSCipher)
+
+# - Enable testign and add the Testing subdirectory to the build 
+enable_testing()
+add_subdirectory(Testing)
 
 # - Declare the build of mpags-cipher main program
 add_executable(mpags-cipher mpags-cipher.cpp)
-set(EXECUTABLE_OUTPUT_PATH /workspaces/mpags-day-3-m-glowacki/build)
 target_link_libraries(mpags-cipher PRIVATE MPAGSCipher)
